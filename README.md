@@ -14,7 +14,8 @@ Normally, monolithic applications have one large code base and lack modularity. 
 - use `vagrant destroy` or once completing the steps below `vagrant reload`
 - within your new folder create a vagrantfile
 
-(image)
+
+<img width="372" alt="vagrantfile" src="https://user-images.githubusercontent.com/110179866/184681966-09bfebbd-b000-46af-be52-881984255c28.png">
 
 - The following code is neccesary in order to correctly provision the right packages in order for the app to present correctly online. 
 
@@ -59,23 +60,34 @@ end
 
 - Within this directory run ` rake spec` 
 
-(image)
+
+<img width="790" alt="rakespec" src="https://user-images.githubusercontent.com/110179866/184682000-b7577acc-6b4b-4bb2-a6fd-717d9cc1403b.png">
 
 
 - As above, you should receive 0 failures if all is running correctly
 
 - Next, navigate inside your VM using `vagrant ssh`
 
-(image)
+
+<img width="293" alt="vagrantssh" src="https://user-images.githubusercontent.com/110179866/184682087-9ee60b8d-90b4-4968-a845-a7a5fc18c5dd.png">
+
 
 - Once inside the VM, navigate to the folder where the data is stored, in this instance `vagrant@ubuntu-xenial:~/app/app$`
 - You can use `ls` to confirm that you are in the correct folder as it will show you a list of all files within said folder
 
-(image)
+
+
+<img width="295" alt="appls" src="https://user-images.githubusercontent.com/110179866/184682116-830ca386-1cc2-4485-879c-ae6d8e9882e8.png">
 
 
 - From within this folder run `npm install`
 - Followed by `npm start`
 - This should run the programme and on your relevant ip display the app
 
-(image)
+
+<img width="296" alt="npmstart" src="https://user-images.githubusercontent.com/110179866/184682145-0d812cf2-beba-49a4-9c5a-5a62f987b60d.png">
+
+
+
+
+<img width="959" alt="spartapp" src="https://user-images.githubusercontent.com/110179866/184682167-0f00013e-70af-42a2-8e05-e795581df7d4.png">
