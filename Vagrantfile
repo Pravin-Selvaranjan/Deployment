@@ -21,18 +21,17 @@ Vagrant.configure("2") do |config|
      sudo systemctl enable nginx -y
      sudo apt-get install nodejs -y
      curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+     sudo apt-get install -y nodejs
      cd app
      cd app
-     npm install pm2 -y
+     npm install pm2 -g
      npm install express -y
      npm install mongoose -y
-     npm install -y
-     npm start -y
      
 
- 
 
 
 
+     
 SHELL
 end
