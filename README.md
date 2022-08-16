@@ -94,6 +94,10 @@ end
 
 
 
+![virtenv](https://user-images.githubusercontent.com/110179866/184926179-ce6fdc32-7919-46f4-8f5f-20bc8562739c.jpeg)
+
+
+
 ### Linux Variable and Env Variable in Linux - Windows - Mac
 
 - How to check existing Env Var  `env` or `printenv`
@@ -114,7 +118,10 @@ end
 - `sudo nano /etc/nginx/sites-available/default` to enter config file for nginx
 - under `server_name` `location / {` (see below) enter proxy_pass `http://localhost:3000;`
 
-(image)
+
+<img width="360" alt="maiks" src="https://user-images.githubusercontent.com/110179866/184926265-e1a3875a-6190-4010-bf78-6bb3a6681321.png">
+
+
 
 - This should now allow you to access the app without using port 3000
 
@@ -197,12 +204,20 @@ end
 - That should take a few minutes depending on your system build
 - Then run `vagrant status` and you should see the below 
 
-(image)
+<img width="258" alt="vagrantstatus" src="https://user-images.githubusercontent.com/110179866/184926330-5fae4147-c9c8-4d61-a032-cae49a599026.png">
+
+
+
 
 - Now you are happy both VM's are running
 - We can update and upgrade both so:-
 - `sudo apt-get update -y` and `sudo apt-get upgrade -y`
 - Be sure to go into and come out of BOTH VM's seperately 
+
+<img width="242" alt="vagrantssh2" src="https://user-images.githubusercontent.com/110179866/184926392-f5639c7b-c721-451c-94a5-730a49fdcae0.png">
+
+
+
 - Use `exit` to come out of any VM
 
 - Next we want to go into the `app` vm use `vagrant ssh app` from witin the folder on your localhost
