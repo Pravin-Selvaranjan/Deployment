@@ -212,7 +212,7 @@ end
 - Now you are happy both VM's are running
 - We can update and upgrade both so:-
 - `sudo apt-get update -y` and `sudo apt-get upgrade -y`
-- Be sure to go into and come out of BOTH VM's seperately 
+- Be sure to go into and come out of BOTH VM's seperately using `vagrant ssh app` and `vagrant ssh db` respectively
 
 <img width="242" alt="vagrantssh2" src="https://user-images.githubusercontent.com/110179866/184926392-f5639c7b-c721-451c-94a5-730a49fdcae0.png">
 
