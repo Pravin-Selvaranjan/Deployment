@@ -114,6 +114,7 @@ end
 - `sudo nano /etc/nginx/sites-available/default` to enter config file for nginx
 - under `server_name` `location / {` (see below) enter proxy_pass `http://localhost:3000;`
 
+
 <img width="377" alt="proxynginx" src="https://user-images.githubusercontent.com/110179866/184882810-315a7c74-533e-4e4d-8a3b-82e0bdf0a11a.png">
 
 
