@@ -107,4 +107,13 @@ end
 - `DB_HOST=mongodb://192.168.10.150:27017/posts`
 -  To set permanent environment variables for a single user, edit the `.bashrc` file `sudo nano ~/.bashrc`
 -  Within the file `export [VARIABLE_NAME]=[variable_value]`
--  
+
+
+## Nginx as a reverse proxy
+
+- `sudo nano /etc/nginx/sites-available/default` to enter config file for nginx
+- under `server_name` `location / {` (see below) enter proxy_pass `http://localhost:3000;`
+
+(image)
+
+- This should now allow you to access the app without using port 3000
