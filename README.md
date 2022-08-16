@@ -94,6 +94,16 @@ end
 
 
 
+
+![virtenv](https://user-images.githubusercontent.com/110179866/184918627-c13942b6-45bb-493d-82b3-4b967b95fd69.jpeg)
+
+
+
+
+
+
+
+
 ### Linux Variable and Env Variable in Linux - Windows - Mac
 
 - How to check existing Env Var  `env` or `printenv`
