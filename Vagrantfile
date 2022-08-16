@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
 
         app.vm.provision "shell", inline: <<-SCRIPT
 
-            sudo apt-get update && sudo apt-get upgrade -y
+            sudo apt-get update && sudo apt-get upgrade -y 
 
             sudo apt-get install nginx -y
 

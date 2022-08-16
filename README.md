@@ -94,16 +94,6 @@ end
 
 
 
-
-![virtenv](https://user-images.githubusercontent.com/110179866/184918627-c13942b6-45bb-493d-82b3-4b967b95fd69.jpeg)
-
-
-
-
-
-
-
-
 ### Linux Variable and Env Variable in Linux - Windows - Mac
 
 - How to check existing Env Var  `env` or `printenv`
@@ -124,8 +114,105 @@ end
 - `sudo nano /etc/nginx/sites-available/default` to enter config file for nginx
 - under `server_name` `location / {` (see below) enter proxy_pass `http://localhost:3000;`
 
-
-<img width="377" alt="proxynginx" src="https://user-images.githubusercontent.com/110179866/184882810-315a7c74-533e-4e4d-8a3b-82e0bdf0a11a.png">
-
+(image)
 
 - This should now allow you to access the app without using port 3000
+
+## Creating multiple virtual environments 
+We begin by ensuring our vagrantfile contained within our folder has all the neccesary functions implemented.
+
+```
+#vagrant
+
+
+
+Vagrant.configure("2") do |config|
+
+
+
+    config.vm.define "app" do |app|
+
+        app.vm.box = "ubuntu/xenial64" # Linux - ubuntu 16.04
+
+        # creating a virtual machine ubuntu
+
+        app.vm.network "private_network", ip:"192.168.10.100"
+
+        #once you added private network, need to reboot vm
+
+        app.vm.synced_folder ".", "/home/vagrant/app"
+
+        # sync data from localhost
+
+        # Shell provisioning to handle all dependencies and automate app start
+
+        app.vm.provision "shell", inline: <<-SCRIPT
+
+            sudo apt-get update && sudo apt-get upgrade -y  # this updates and upgrades
+
+            sudo apt-get install nginx -y # installs nginx
+
+            sudo systemctl enable ngninx 
+            # this is important it enables nginx just    because its installed doesnt mean it will work
+
+            curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+            sudo apt-get install -y nodejs
+            # the above two commands install the CORRECT version of nodejs for tests to pass in this particular instance 6.x
+
+            cd app
+
+            cd app
+            # the above two commands move to the correct location
+
+            npm install pm2 -g -y # installs pm2
+
+            npm install express -y # installs express
+
+            npm install mongoose -y # installs mongoose
+
+
+            SCRIPT
+
+    end
+
+
+
+    config.vm.define "db" do |db|
+
+        db.vm.box = "ubuntu/xenial64"
+
+        db.vm.network "private_network", ip: "192.168.10.150"
+
+    end
+
+
+
+end
+
+```
+
+- Once our vagrantfile is correctly configured we can `vagrant up` to get everything started
+- If this does not work for you using the above code please run `vagrant up app` and ` vagrant up db` respectively
+- That should take a few minutes depending on your system build
+- Then run `vagrant status` and you should see the below 
+
+(image)
+
+- Now you are happy both VM's are running
+- We can update and upgrade both so:-
+- `sudo apt-get update -y` and `sudo apt-get upgrade -y`
+- Be sure to go into and come out of BOTH VM's seperately 
+- Use `exit` to come out of any VM
+
+- Next we want to go into the `app` vm use `vagrant ssh app` from witin the folder on your localhost
+- once in the vm `app` we want to use `npm start` and if you havent already had it installed `npm install` before start
+
+- This will now allow us to go to the following ip: `192.168.10.100:3000`, however using reverse proxy I will be able to navigate to the app homepage without using `:3000`
+
+- please see steps above re using nginx as a reverse proxy to allow for this
+
+
+
+
+
