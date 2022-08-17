@@ -227,7 +227,26 @@ end
 
 - please see steps above re using nginx as a reverse proxy to allow for this
 
+# Mongodb config
 
+### Required dependencies 
 
+- From within the DB VM
+
+- `sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927`
+
+- `echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list`
+
+- run update and upgrade `sudo apt-get update -y`
+- `sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20`
+- check the staatus of mongodb `systemctl status mongod`
+- restart and enable the db `sudo systemctl restart mongod` `sudo systemctl enable mongod`
+- `systemctl status mongod`
+- `sudo nano mongod.conf`
+- change bindip `0.0.0.0` allow all access
+- Back to APP vm
+- ensure bash file is updated `DB_HOST="AFFASF"`
+- 
+- 
 
 

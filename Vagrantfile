@@ -38,11 +38,21 @@ Vagrant.configure("2") do |config|
 
             cd app
 
+            sudo cp -f rev_prox_file /etc/nginx/sites-available/default
+
+            sudo systemctl restart nginx
+
             npm install pm2 -g -y
 
             npm install express -y
 
             npm install mongoose -y
+
+            npm install
+
+            npm start
+
+            
 
 
             SCRIPT
@@ -56,6 +66,27 @@ Vagrant.configure("2") do |config|
         db.vm.box = "ubuntu/xenial64"
 
         db.vm.network "private_network", ip: "192.168.10.150"
+
+        app.vm.provision "shell", inline: <<-SCRIPT
+        
+        sudo apt-get update && sudo apt-get upgrade -y
+
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927
+
+        echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+        sudo apt-get update -y
+
+        sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+
+        sudo systemctl start mongod
+
+        sudo systemctl restart mongod
+
+        sudo systemctl enable mongod
+
+        sudo cp -f mongodb_config_file /etc/mongod.conf
+
 
     end
 
