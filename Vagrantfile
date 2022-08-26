@@ -34,11 +34,9 @@ Vagrant.configure("2") do |config|
 
             sudo apt-get install -y nodejs
 
-            cd app
+            sudo cp -f app/app/rev_prox_file /etc/nginx/sites-available/default
 
-            cd app
-
-            sudo cp -f rev_prox_file /etc/nginx/sites-available/default
+            echo "DB_HOST=mongodb://192.168.10.150:27017/posts" | sudo tee -a /etc/environment
 
             sudo systemctl restart nginx
 
@@ -48,12 +46,19 @@ Vagrant.configure("2") do |config|
 
             npm install mongoose -y
 
+            cd app/app
+
             npm install
 
-            npm start
+            cd seeds
+
+            sudo node seed.js
+
+            sudo apt-get update
+
+            sudo apt-get upgrade -y
 
             
-
 
             SCRIPT
 
@@ -67,7 +72,9 @@ Vagrant.configure("2") do |config|
 
         db.vm.network "private_network", ip: "192.168.10.150"
 
-        app.vm.provision "shell", inline: <<-SCRIPT
+        db.vm.synced_folder ".", "/home/vagrant/folder"
+
+        db.vm.provision "shell", inline: <<-SCRIPT
         
         sudo apt-get update && sudo apt-get upgrade -y
 
@@ -85,11 +92,25 @@ Vagrant.configure("2") do |config|
 
         sudo systemctl enable mongod
 
-        sudo cp -f mongodb_config_file /etc/mongod.conf
+        cd folder
 
+        sudo cp -f mongodb_replace /etc/mongod.conf
+
+        sudo systemctl restart mongod
+
+
+        SCRIPT
 
     end
 
 
-
 end
+
+
+
+
+
+
+    
+
+
